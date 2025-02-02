@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/sidebar';
 
 import Sidebar from '@/components/sidebar';
+import ChatbotWidget from '@/components/ChatbotWidget';
 
 export default async function Layout({ children}: any) {
     // get supbase user
@@ -21,11 +22,12 @@ export default async function Layout({ children}: any) {
                 <div className="h-full w-full sm:ml-[64px]">
                     <div className='flex h-full w-full flex-col max-sm:ml-0'> 
                           {children}
-                    </div>    
+                    </div>  
+                
                 </div>
-
+               
             </DashboardLayout>
-    
+            <ChatbotWidget />  
         </SidebarProvider>
            
     )

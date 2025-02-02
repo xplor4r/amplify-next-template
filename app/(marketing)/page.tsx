@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 
-export const Homepage = () => {
+export default async function Homepage() {
     return (
         <div className="mx-auto py-20">
             <section id="hero" className="min-h-screen bg-[radial-gradient(hsl(0, 72%, 65%, 40%), hsl(24, 62%, 73%, 40%), hsl(var(--background))_60%)] items-center justify-center text-center text-balance flex flex-col gap-8 px-4">
@@ -33,5 +33,3 @@ export const Homepage = () => {
         </div>
     )
 }
-
-export default Homepage;

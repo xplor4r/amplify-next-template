@@ -1,52 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { generateClient } from "aws-amplify/data";
-import type { Schema } from "@/amplify/data/resource";
+import Hero from "@/components/hero";
 import "./../app/app.css";
-import { Amplify } from "aws-amplify";
-import outputs from "@/amplify_outputs.json";
-import "@aws-amplify/ui-react/styles.css";
 
-Amplify.configure(outputs);
+// import { Authenticator } from '@aws-amplify/ui-react';
+// import '@aws-amplify/ui-react/styles.css'
 
-const client = generateClient<Schema>();
+
 
 export default function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  function listTodos() {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }
-
-  useEffect(() => {
-    listTodos();
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({
-      content: window.prompt("Todo content"),
-    });
-  }
 
   return (
     <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/">
-          Review next steps of this tutorial.
-        </a>
-      </div>
+       <Hero />
+    
+        <h2 className="font-medium text-xl mb-4">Features</h2>
+        <li>
+           Income & Expense Analysis - Get a clear picture of your financial health with detailed income and expense breakdowns 
+        </li>
+        <li>
+          Investment Insights - Receive personalized investment advice based on your financial goals
+        </li>
+        <li>
+          Smart Budgeting - Create and Stick to intelligent budgets that adapt to your spending habits
+        </li>
+        <li>
+          Goal Tracking - Set financial goals and track your progress with AI-powered recommendations.
+        </li>
+
     </main>
   );
 }

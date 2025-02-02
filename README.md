@@ -1,5 +1,6 @@
 # Wealthy AI - Your Personal Finance Assistant
 
+Run the app at - https://main.ddg8iicsr72an.amplifyapp.com
 
 ## AWS Amplify Next.js (App Router) Starter Template
 

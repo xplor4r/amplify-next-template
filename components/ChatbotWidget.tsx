@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import { MessageCircle, Send } from "lucide-react"; 
+import { QuickAccessChips } from "./QuickAccessChips";
 
 // Mock financial data (in a real app, this would come from your backend)
 const financialData = {
@@ -14,6 +15,11 @@ const financialData = {
     expenses: 3500,
     savings: 1500,
     investments: 10000,
+    goals: [
+        { name: "Emergency Fund", target: 10000, current: 5000 },
+        { name: "Down Payment for House", target: 50000, current: 15000 },
+        { name: "Retirement Savings", target: 500000, current: 100000 },
+      ],
    }
    
 
@@ -46,6 +52,7 @@ export default function ChatbotWidget() {
  
     const getAIResponse = (input: string) => {
         const lowerInput = input.toLowerCase()
+        console.log('lowerInput', lowerInput);
         if (lowerInput.includes("save") || lowerInput.includes("saving")) {
           return `Based on your current financial situation, you're saving $${financialData.savings} per month. To increase your savings, consider reducing non-essential expenses or finding ways to increase your income.`
         } else if (lowerInput.includes("invest") || lowerInput.includes("investment")) {
@@ -54,29 +61,49 @@ export default function ChatbotWidget() {
           return `Your monthly expenses are $${financialData.expenses}. To improve your financial health, try to keep your expenses below 70% of your income. Look for areas where you can cut back, such as subscriptions or dining out.`
         } else if (lowerInput.includes("income")) {
           return `Your monthly income is $${financialData.income}. To improve your financial situation, consider ways to increase your income, such as asking for a raise, finding a side hustle, or developing new skills that can lead to higher-paying opportunities.`
+        } else if (lowerInput.includes("goal") || lowerInput.includes("target")) {
+          const goalUpdates = financialData.goals
+            .map((goal) => {
+              const progress = (goal.current / goal.target) * 100
+              return `${goal.name}: ${progress.toFixed(1)}% complete (${goal.current}/${goal.target})`
+            })
+            .join(". ")
+          return `Here's an update on your financial goals: ${goalUpdates}. Keep up the good work and stay focused on your targets!`
         } else {
           return "I'm sorry, I didn't quite understand that. Could you please rephrase your question? You can ask me about your savings, investments, budget, expenses, or income."
         }
       }
+     
+      const sendMessage = (message: string) => {
+
+        setMessages([...messages, { role: "user", content: message} ])
+        setInput("");
+        // send data to ai service and get responss
+        setTimeout(() => {
+            const response = getAIResponse(message);
+            setMessages((prev) => [...prev, { role: "assistant", content:  response}])
+        }, 1000)
+    }
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         if (input.trim()) {
-            setMessages([...messages, { role: "user", content: input} ])
-
-            // send data to ai service and get responss
-            setTimeout(() => {
-                const response = getAIResponse(input);
-                setMessages((prev) => [...prev, { role: "assistant", content:  response}])
-            }, 1000)
-            setInput("");
+           sendMessage(input);
+         
         }
     }
 
+ 
     // const handleOpen = () => {
     //     setIsOpen(true)
     // }
+
+    const handleChipClick = (chip: string) => {
+        console.log('chip', chip);
+        sendMessage(chip);
+    }
 
     return (
         <>
@@ -112,6 +139,9 @@ export default function ChatbotWidget() {
                                 }
                             </ScrollArea>
                         </CardContent>
+                        <div className="px-4 py-2">
+                            <QuickAccessChips onChipClick={handleChipClick} />
+                        </div>
                         <CardFooter>
                             <form onSubmit={handleSubmit} className="flex w-full space-x-2">
                                 <Input

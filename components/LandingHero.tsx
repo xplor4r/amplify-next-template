@@ -36,7 +36,7 @@ export const LandingHero = ({
     <div className="flex flex-col items-center text-center">
            <Badge variant="secondary" className="w-fit mb-2">
             <SparkleIcon size={40} className="px-2" /> 
-             Grow your wealth with AI-powered Insights 
+             Grow your wealth with AI-powered Insights
         </Badge>
 
         

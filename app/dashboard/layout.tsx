@@ -1,23 +1,33 @@
+
 import DashboardLayout from '@/components/layout'
+import {
+    SidebarInset,
+    SidebarProvider,
+    SidebarTrigger,
+} from '@/components/ui/sidebar';
+
+import Sidebar from '@/components/sidebar';
 
 export default async function Layout({ children}: any) {
     // get supbase user
 
     return (
-        <>
-            <html lang="en" suppressHydrationWarning>
-                <body className={`test-class flex h-full flex-col text-gray-600 antiliased`}>
-                    <main >
-                        <DashboardLayout>
-                            <h1> This IS DASHBOARd</h1>
-                            <div className='bg-red'>
-                                  {children}
-                            </div>
-                         </DashboardLayout>
-                    </main>
-                </body>
-            </html>
-        </>
+        <SidebarProvider>
+          
+            <DashboardLayout>
+             
+                <Sidebar />
+             
+                <div className="h-full w-full sm:ml-[64px]">
+                    <div className='flex h-full w-full flex-col max-sm:ml-0'> 
+                          {children}
+                    </div>    
+                </div>
+
+            </DashboardLayout>
+    
+        </SidebarProvider>
+           
     )
 }
 

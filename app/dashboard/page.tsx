@@ -3,6 +3,17 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { InfoIcon } from "lucide-react";
+import LayoutHeader from "@/components/layout/header";
+
+
+const title = 'Wealthy AI - Overview';
+const description  = 'Your AI finance advisor'
+
+export const metadata = {
+    title,
+    description
+}
+
 
 export default async function Page() {
 
@@ -18,9 +29,7 @@ export default async function Page() {
 
     return (
         <>
-            <div>
-                <h2 className="text-yellow-300"> Test </h2>
-            </div>
+            <LayoutHeader title="Overview" />
             <div className="flex-1 w-full flex flex-col gap-12">
             <div className="w-full">
                 <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">

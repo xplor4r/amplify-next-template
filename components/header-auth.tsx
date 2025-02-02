@@ -30,7 +30,7 @@ export default async function AuthButton() {
               size="sm"
               variant={"outline"}
               disabled
-              className="opacity-75 cursor-none pointer-events-none"
+              className="opacity-75 cursor-none pointer-events-none bg-black text-white"
             >
               <Link href="/sign-in">Sign in</Link>
             </Button>
@@ -39,7 +39,7 @@ export default async function AuthButton() {
               size="sm"
               variant={"default"}
               disabled
-              className="opacity-75 cursor-none pointer-events-none"
+              className="opacity-75 cursor-none pointer-events-none  bg-black text-white"
             >
               <Link href="/sign-up">Sign up</Link>
             </Button>
@@ -52,7 +52,10 @@ export default async function AuthButton() {
     <div className="flex items-center gap-4">
       Hey, {user.email}!
       <form action={signOutAction}>
-        <Button type="submit" variant={"outline"}>
+        <Button
+         size="sm"
+         className="opacity-75 bg-black text-white"
+         type="submit" variant={"outline"}>
           Sign out
         </Button>
       </form>

@@ -1,7 +1,11 @@
+
 import FetchDataSteps from "@/components/tutorial/fetch-data-steps";
 import { createClient } from "@/utils/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
+
+
+
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -29,6 +33,15 @@ export default async function ProtectedPage() {
           {JSON.stringify(user, null, 2)}
         </pre>
       </div>
+        {/* <Authenticator>           */}
+      
+        <div>
+          🥳 App successfully hosted. 
+          <br />
+          <a href="https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/">
+            Review next steps of this tutorial.
+          </a>
+        </div>
       {/* <div>
         <h2 className="font-bold text-2xl mb-4">Next steps</h2>
         <FetchDataSteps />

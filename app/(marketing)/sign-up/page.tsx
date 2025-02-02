@@ -4,7 +4,7 @@ import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { SmtpMessage } from "../smtp-message";
+import { SmtpMessage } from "@/app/(marketing)/smtp-message";
 
 export default async function Signup(props: {
   searchParams: Promise<Message>;
@@ -19,8 +19,9 @@ export default async function Signup(props: {
   }
 
   return (
-    <>
-      <form className="flex flex-col min-w-64 max-w-64 mx-auto">
+    <div className="mx-auto w-[600px] py-40">
+          <form className="flex-1 flex-col w-auto">
+
         <h1 className="text-2xl font-medium">Sign up</h1>
         <p className="text-sm text text-foreground">
           Already have an account?{" "}
@@ -45,7 +46,7 @@ export default async function Signup(props: {
           <FormMessage message={searchParams} />
         </div>
       </form>
-      <SmtpMessage />
-    </>
+      {/* <SmtpMessage /> */}
+    </div>
   );
 }

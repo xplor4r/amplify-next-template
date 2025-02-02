@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+     context: .
+     dockerfile:  client/wealthy-nextjs-web/Dockerfile-local
+     target: production
+    container_name: wealthy-client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/wealthy-nextjs-web:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=production
+  
+  web-dev:
+    build: 
+      context: .
+      dockerfile:  client/wealthy-nextjs-web/Dockerfile-local
+      target: development
+    container_name: wealthy-client-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/wealthy-nextjs-web:/app
+      - /app/node_modules
+      # - /app/.next
+    environment:
+      - NODE_ENV=development

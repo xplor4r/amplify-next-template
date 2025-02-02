@@ -16,7 +16,7 @@ import {
 	OverviewIcon,
 	SettingsIcon,
 	SignoutIcon,
-	// SubscriptionsIcon,
+	SubscriptionsIcon,
 	SupportIcon,
 } from '@/components/icons';
 import { Separator } from '@/components/ui/separator';
@@ -37,12 +37,12 @@ const dashboardLinks = [
 		Icon: InvestmentIcon,
 		shortcutText: shortcuts.menu.investments.shortcut,
 	},
-	// {
-	// 	name: 'Subscriptions',
-	// 	href: '/subscriptions',
-	// 	Icon: SubscriptionsIcon,
-	// 	shortcutText: shortcuts.menu.subscriptions.shortcut,
-	// },
+	{
+		name: 'Subscriptions',
+		href: '/dashboard/subscriptions',
+		Icon: SubscriptionsIcon,
+		shortcutText: shortcuts.menu.subscriptions.shortcut,
+	},
 ];
 
 const settingsLinks = [
@@ -70,7 +70,7 @@ export default function Sidebar() {
 			if (keys === shortcuts.menu.income.shortcut) router.push('/dashboard/income');
 			if (keys === shortcuts.menu.expenses.shortcut) router.push('/dashboard/expenses');
 			if (keys === shortcuts.menu.investments.shortcut) router.push('/dashboard/investments');
-			// if (keys === shortcuts.menu.subscriptions.shortcut) router.push('/subscriptions');
+			if (keys === shortcuts.menu.subscriptions.shortcut) router.push('/dashboard/subscriptions');
 		},
 		options
 	);

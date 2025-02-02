@@ -19,23 +19,23 @@ export async function middleware(req: NextRequest) {
     const currentHost = hostName?.replace(`.${domainUrl}`, '');
     console.log('currentHost', currentHost);
 
-    const supabase = createMiddlewareClient({ req, res});
+    // const supabase = createMiddlewareClient({ req, res});
     
-    const { data } = await supabase.auth.getSession();
-    const { session } = data;  
+    // const { data } = await supabase.auth.getSession();
+    // const { session } = data;  
 
-    if (currentHost === 'main')  {
-        console.log('main');
-        if (url.pathname === '/sign-in' || url.pathname === '/sign-up') {
-            if (session) {
-                url.pathname = '/';
-                return NextResponse.redirect(url);
-            }
-            return res;
-        }
-        url.pathname = `/dashboard${url.pathname}`;
-        return NextResponse.rewrite(url);
-    }
+    // if (currentHost === 'main')  {
+    //     console.log('main');
+    //     if (url.pathname === '/sign-in' || url.pathname === '/sign-up' || url.pathname === '/') {
+    //         if (session) {
+    //             url.pathname = '/';
+    //             return NextResponse.redirect(url);
+    //         }
+    //         return res;
+    //     }
+    //     url.pathname = `/dashboard${url.pathname}`;
+    //     return NextResponse.rewrite(url);
+    // } 
 
   
     return res;

@@ -3,6 +3,7 @@
 // import { useSidebar } from 'components/context/sidebar-provider';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { AddButton } from '../AddButton';
 
 // import DatePicker from '../datepicker';
 // import Feedback from '../feedback';
@@ -57,6 +58,7 @@ export default function LayoutHeader({ title, showDatePicker = false }: { title:
 						showDatePicker={showDatePicker}
 						className="absolute right-[16px] top-[12px] sm:relative sm:right-0 sm:top-0"
 					/> */}
+					<AddButton />
 				</div>
 			</div>
 			<Separator />

@@ -65,7 +65,7 @@ export default function NavMenu () {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className='text-gray-700 dark:text-gray-50 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-lg font-medium'>
+                                    className='text-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:text-black hover:text-gray-900 px-3 py-2 rounded-md text-lg font-medium'>
                                         {item.name}
                                     </Link>
                             ))

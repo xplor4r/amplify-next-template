@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: 'Your companion for all your personal finances'
 }
 
+
 export default async function Page() {
     return (
         <div className="mx-auto py-20">

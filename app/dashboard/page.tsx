@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Overview } from "@/components/Overview"
 import { RecentTransactions } from "@/components/RecentTransactions"
 import { Recommendations } from "@/components/Recommendations"
+import { OverviewContextProvider } from '@/components/context/overview-provider';
 
 
 
@@ -36,11 +37,12 @@ export default async function Page() {
     return (
         <>
             <LayoutHeader title="Overview" />
+            <OverviewContextProvider>
             <div className="w-full overflow-x-auto p-4 pt-3">
                     <Summary />
            
 
-            
+                  
 
             <div className="space-y-4">
                 <div className="flex justify-around">
@@ -102,7 +104,7 @@ export default async function Page() {
                 <Recommendations />
             </div>
             </div>
-
+            </OverviewContextProvider>
 
         </>
     )

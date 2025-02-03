@@ -28,6 +28,26 @@ type Date = {
 // 	}
 // };
 
+export const formatTotalAmountCurrency = (data: { amount: number }[], currency: string = 'Rs.', locale: string = 'en-IN'): string => {
+	const totalAmount = data.reduce((acc, item) => {
+			const amount = Number(item.amount);
+			return acc + (isNaN(amount) ? 0 : amount)
+	}, 0);
+	// console.log('totalAmount', totalAmount);
+	return `${currency} ${totalAmount.toLocaleString(locale)}`;
+};
+
+
+export const formatTotalPriceCurrency = (data: { price: number }[], currency: string = 'Rs.', locale: string = 'en-IN'): string => {
+	const totalAmount = data.reduce((acc, item) => {
+			const amount = Number(item.price);
+			return acc + (isNaN(amount) ? 0 : amount)
+	}, 0);
+	// console.log('totalAmount', totalAmount);
+	return `${currency} ${totalAmount.toLocaleString(locale)}`;
+};
+
+
 export const formatDate = ({ date, locale = defaultLocale, dateStyle = defaultDateStyle }: Date): any => {
 	try {
 		return new Intl.DateTimeFormat(locale, dateStyle).format(new Date(date));

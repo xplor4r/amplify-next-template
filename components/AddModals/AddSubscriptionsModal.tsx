@@ -46,12 +46,12 @@ const initialState: SubscriptionsData = {
    // Here you would typically send the data to your backend
     try {
         setLoading(true);
-        console.log('sending formData', formData);
+        // console.log('sending formData', formData);
 
         
         await addSubscription(formData).then((resp) => {
 
-            console.log('resp for add expense', resp);
+            // console.log('resp for add expense', resp);
 
             setLoading(false);
             // show toast
@@ -67,7 +67,7 @@ const initialState: SubscriptionsData = {
         setFormData({ ...initialState});
     }
 
-   console.log('formData', formData);
+  //  console.log('formData', formData);
 
    onClose()
  }
@@ -123,6 +123,7 @@ const initialState: SubscriptionsData = {
                     <Label htmlFor="url">URL</Label>
                     <Input id="url" name="url" type="url" value={formData.url} onChange={handleInputChange} required />
                   </div>
+
              
                 </div>
                 <div className="mt-6 flex justify-end space-x-4">

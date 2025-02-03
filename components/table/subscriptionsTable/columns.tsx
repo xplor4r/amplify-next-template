@@ -33,7 +33,6 @@ export type SubscriptionsSummaryProps = {
     name: string
     price: string
     date: string
-    category: string
     cancelled_at: string
     paid_dates: any[]
     prev_renewal_date: string
@@ -71,10 +70,6 @@ export type SubscriptionsSummaryProps = {
     {
         accessorKey: "notify",
         header: "Notify",
-    },
-    {
-      accessorKey: "category",
-      header: "Category",
     },
     {
         accessorKey: "notes",

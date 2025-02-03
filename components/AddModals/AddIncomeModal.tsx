@@ -21,7 +21,7 @@ export function AddIncomeModal({ isOpen, onClose }: AddItemModalProps) {
  const [loading, setLoading] = useState(false);
  const { userId } = useAuth();
 
- console.log('incomemodal', userId);
+//  console.log('incomemodal', userId);
  
  const todayDate = format(new Date(), dateFormat);
 const initialState = {
@@ -45,12 +45,12 @@ const initialState = {
    // Here you would typically send the data to your backend
     try {
         setLoading(true);
-        console.log('sending formData', formData);
+        // console.log('sending formData', formData);
 
         
         await addIncome(formData).then((resp) => {
 
-            console.log('resp for add income', resp);
+            // console.log('resp for add income', resp);
 
             if (resp) {
                 // show success toast
@@ -66,7 +66,7 @@ const initialState = {
         setFormData({ ...initialState});
     }
 
-   console.log('formData', formData);
+  //  console.log('formData', formData);
 
    
 

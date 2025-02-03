@@ -46,12 +46,12 @@ const initialState: InvestmentsData = {
    // Here you would typically send the data to your backend
     try {
         setLoading(true);
-        console.log('sending formData', formData);
+        // console.log('sending formData', formData);
 
         
         await addInvestment(formData).then((resp) => {
 
-            console.log('resp for add expense', resp);
+            // console.log('resp for add expense', resp);
 
             setLoading(false);
             // show toast
@@ -67,7 +67,7 @@ const initialState: InvestmentsData = {
         setFormData({ ...initialState});
     }
 
-   console.log('formData', formData);
+  //  console.log('formData', formData);
 
    onClose()
  }

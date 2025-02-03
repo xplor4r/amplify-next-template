@@ -1,12 +1,25 @@
 'use client'
 
 import SummaryCard from '@/components/cards/summary-card';
+import { useEffect } from 'react';
+import { getSubscriptions } from '@/services/subscriptions';
 
 // import { formatCurrency } from '@/lib/formatter';
 
 
 export default function SubscriptionsSummary () {
 
+
+	// const fetchSubscriptionsData = async () => {
+	// 	await getSubscriptions().then((resp) => {
+	// 		console.log('subscripitons resp >>>>', resp);
+	// 	});
+	// }
+
+	// useEffect(() => {
+	// 	fetchSubscriptionsData();
+	// }, []);
+	
     return (
         <>
             	<h2 className="mb-4 font-semibold text-primary dark:text-white">Summary</h2>

@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model income {
+  id         String   @id @default(uuid())
+  name       String
+  notes      String?
+  amount     String   @default("0")
+  category   String
+  date       String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+  user_id    String   @db.Uuid
+}
+
+model expense {
+  id         String  @id @default(uuid())
+  name       String
+  notes      String?
+  price      String  @default("0")
+  paid_via   String  @default("cash")
+  category   String
+  date       String
+  created_at DateTime @default(now())  @db.Timestamptz(6)
+  updated_at DateTime @default(now())  @updatedAt @db.Timestamptz()
+  user_id    String   @db.Uuid
+}
+
+model investments {
+  id        String  @id @default(uuid())
+  name      String
+  notes     String?
+  price     String  @default("0")
+  units     String  @default("0")
+  category  String
+  date      String
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime @default(now()) @db.Timestamptz(6)
+  user_id   String @db.Uuid
+}
+
+model subscriptions {
+  id        String  @id @default(uuid())
+  name      String
+  notes     String?
+  url       String
+  price     String @default("0")
+  paid      String
+  notify    Boolean @default(false)
+  date      String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+  user_id    String  @db.Uuid
+  active     Boolean?  @default(true)
+  cancelled_at  String?
+}
+
+// model Post {
+//   id        Int     @id @default(autoincrement())
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   author    User    @relation(fields: [authorId], references: [id])
+//   authorId  Int
+// }
+

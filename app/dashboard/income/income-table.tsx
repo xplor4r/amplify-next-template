@@ -10,7 +10,7 @@ export default function IncomeTable () {
 
     const { data, isLoading } = useSWR('fetchIncome', getIncome)
 
-    console.log('income table data', data);
+    // console.log('income table data', data);
 
     if (data) {
         const incomeSummaryData: IncomeSummaryProps[] = data;

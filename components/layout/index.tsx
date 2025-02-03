@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: any }) {
 	useEffect(() => {
 		const getData = async () => {
 		  const { data } = await supabase.auth.getUser();
-		 console.log('data', data);
+		//  console.log('data', data);
 		 const user = data.user;
 		 setLoggedInUser(user);
 		}

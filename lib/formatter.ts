@@ -33,7 +33,7 @@ export const formatTotalAmountCurrency = (data: { amount: number }[], currency: 
 			const amount = Number(item.amount);
 			return acc + (isNaN(amount) ? 0 : amount)
 	}, 0);
-	console.log('totalAmount', totalAmount);
+	// console.log('totalAmount', totalAmount);
 	return `${currency} ${totalAmount.toLocaleString(locale)}`;
 };
 
@@ -43,7 +43,7 @@ export const formatTotalPriceCurrency = (data: { price: number }[], currency: st
 			const amount = Number(item.price);
 			return acc + (isNaN(amount) ? 0 : amount)
 	}, 0);
-	console.log('totalAmount', totalAmount);
+	// console.log('totalAmount', totalAmount);
 	return `${currency} ${totalAmount.toLocaleString(locale)}`;
 };
 

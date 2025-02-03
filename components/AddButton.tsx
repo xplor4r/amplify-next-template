@@ -40,7 +40,7 @@ export function AddButton() {
 
  const handleAdd = (type: ItemType) => {
    // Here you would typically open a modal or navigate to a form
-   console.log(`Add ${type}`)
+//    console.log(`Add ${type}`)
 
    setItemType(type);
     setModalOpen(true)

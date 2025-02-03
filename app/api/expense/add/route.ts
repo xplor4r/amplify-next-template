@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
             status: 201
         });
     } catch(error) {
-        console.log('error >>>', error)
+        // console.log('error >>>', error)
         return NextResponse.json({ error, message: 'Failed to add expense'},  { status: 500})
     }
 

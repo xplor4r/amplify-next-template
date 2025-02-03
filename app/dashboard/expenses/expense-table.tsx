@@ -10,7 +10,7 @@ export default function ExpenseTable () {
 
     const { data, isLoading } = useSWR('fetchExpenses', getExpenses)
 
-    console.log('expense table data', data);
+    // console.log('expense table data', data);
 
     if (data) {
         const expenseSummaryData: ExpenseSummaryProps[] = data;

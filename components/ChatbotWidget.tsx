@@ -6,8 +6,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {ScrollArea} from "@/components/ui/scroll-area";
-import { MessageCircle, Send } from "lucide-react"; 
+import { MessageCircle, Send, Sparkles, UserRound, Bot } from "lucide-react"; 
 import { QuickAccessChips } from "./QuickAccessChips";
+import { getChatData, askChatData } from "@/services/bodhi";
+import Markdown from 'react-markdown'
+import rehypeSanitize from 'rehype-sanitize';
+import remarkGfm from "remark-gfm";
+import ChatLoading from './ChatLoading';
+import ChatText from './ChatText';
+import {LoadingSkeleton} from './LoadingSkeleton';
 
 // Mock financial data (in a real app, this would come from your backend)
 const financialData = {
@@ -25,6 +32,8 @@ const financialData = {
 
 export default function ChatbotWidget() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [messages, setMessages] = useState([
         {
             role : "assistant",
@@ -52,7 +61,7 @@ export default function ChatbotWidget() {
  
     const getAIResponse = (input: string) => {
         const lowerInput = input.toLowerCase()
-        console.log('lowerInput', lowerInput);
+        // console.log('lowerInput', lowerInput);
         if (lowerInput.includes("save") || lowerInput.includes("saving")) {
           return `Based on your current financial situation, you're saving $${financialData.savings} per month. To increase your savings, consider reducing non-essential expenses or finding ways to increase your income.`
         } else if (lowerInput.includes("invest") || lowerInput.includes("investment")) {
@@ -73,26 +82,90 @@ export default function ChatbotWidget() {
           return "I'm sorry, I didn't quite understand that. Could you please rephrase your question? You can ask me about your savings, investments, budget, expenses, or income."
         }
       }
-     
-      const sendMessage = (message: string) => {
 
-        setMessages([...messages, { role: "user", content: message} ])
-        setInput("");
-        // send data to ai service and get responss
-        setTimeout(() => {
-            const response = getAIResponse(message);
-            setMessages((prev) => [...prev, { role: "assistant", content:  response}])
-        }, 1000)
+    //   const getChatResponse = async () => {
+    
+    //     const messages = [
+    //         {
+    //             role: "user",
+    //             content: "Hi i am sujay, can you tell me the meaning of it"
+    //         }
+    //     ]
+
+    //     await askChatData(messages).then((resp) => {
+    //         console.log('resp from AI', resp);
+    //     })
+    //     // await getChatData().then((resp) => {
+    //     //     console.log('resp from AI', resp);
+    //     // })
+    //   }
+     
+    //   const sendMessage = (message: string) => {
+
+    //     setMessages([...messages, { role: "user", content: message} ])
+    //     setInput("");
+    //     // send data to ai service and get responss
+    //     // setTimeout(() => {
+    //     //     const response = getAIResponse(message);
+    //     //     setMessages((prev) => [...prev, { role: "assistant", content:  response}])
+    //     // }, 1000)
+    // }
+
+    const sendMessage = async () => {
+        setIsGenerating(true);
+
+        if (input !== '') {
+            setIsLoading(true);
+
+            /// set user message in the messages
+            const userInput = { role: "user", content: input};
+             setMessages((prev) => [...prev, userInput]);
+
+             const oldMessages = messages.map((message) => ({
+                role: message.role,
+                content: message.content
+             }));
+             const newMessages = [...oldMessages, userInput];
+
+             // Todo: update the messages in the current session
+             // updateChatSessionMessages(sessionId, userInput);
+
+             await askChatData(newMessages).then((chatResponse) => {
+               
+                const responseMesssage = chatResponse.response;
+                // console.log('resp from AI', responseMesssage);
+                if (responseMesssage.length > 0) {
+                    setMessages((prev) => [
+                        ...prev,
+                        {role: 'assistant', content: responseMesssage}
+                    ])
+
+           
+                    // Todo: update the messages in the current session
+                    // updateChatSessionMessages(sessionId, { role: "assistant", content: responseMessage});
+                }
+                setIsLoading(false);
+            }).catch((error) => {
+                // console.log('error >>>', error);
+                setIsLoading(false);
+            }).finally(() => {
+                setIsGenerating(false);
+            })
+        }
+
     }
 
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        await sendMessage();
+       
+        // await getChatResponse();
 
-        if (input.trim()) {
-           sendMessage(input);
+        // if (input.trim()) {
+        //    sendMessage(input);
          
-        }
+        // }
     }
 
  
@@ -100,9 +173,11 @@ export default function ChatbotWidget() {
     //     setIsOpen(true)
     // }
 
-    const handleChipClick = (chip: string) => {
+    const handleChipClick = async (chip: string) => {
         console.log('chip', chip);
-        sendMessage(chip);
+        // sendMessage(chip);
+        setInput(chip);   
+        await sendMessage();
     }
 
     return (
@@ -128,15 +203,68 @@ export default function ChatbotWidget() {
                         </CardHeader>
                         <CardContent className="flex-grow overflow-hidden">
                             <ScrollArea className="h-full w-full pr-4">
+                           
+                                    <Sparkles className="h-6 w-6 text-blue-500 mr-2" />
+                            
+                                    {
+                                        messages.map((message, index) => (
+                                            <div key={index} className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}>
+                                                
+                                           
+
+                                                {message.role === 'user' && (
+                                                     <>
+                                                       {message.content.trim()}
+                                                       </>
+                                                     )}
+
+                                                {
+                                                            // if last message is assistant and isLoading, then show loading skeleton
+                                                            index === messages.length - 1 && message.role === 'assistant' && isLoading && (
+                                                                <LoadingSkeleton />
+                                                            )
+                                                    }
+
+
+                                                {
+                                                            // if last message is assistant and is not loading and is not empty, then show message
+                                                            index === messages.length - 1 && message.role === "assistant" && !isLoading && message.content.trim() !== "" && (
+                                                                <ChatText text={message.content.trim()} />
+                                                            )
+                                                            }
+
+
+                                                        {
+                                                        message.role === 'assistant' && index !== messages.length - 1 && (
+                                                            <Markdown rehypePlugins={[rehypeSanitize]} remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
+                                                            {message.content.trim()}
+                                                        </Markdown>
+                                                        )
+                                                        }
+
+                                            </div>
+                                        ))
+                                    }
+
+
                                 {
-                                    messages.map((message, index) => (
-                                        <div key={index} className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}>
-                                            <span className={`inline-block p-2 rounded-lg ${ message.role === "user" ? "bg-black text-white" : "bg-gray-200 text-gray-800"}`} >
-                                                {message.content}
-                                               </span>
-                                        </div>
-                                    ))
-                                }
+                                                                isLoading && (
+                                                                <div className="flex flex-col items-center justify-center py-4">
+                                                                    <ChatLoading />
+                                                                </div>
+                                                                )
+                                                            }
+
+
+                                                            {isLoading && (
+                                                                <div className="mb-4 text-left">
+                                                                <span className="inline-block items-center p-4 rounded-lg bg-gray-100 text-gray-900">
+                                                                    <Bot className="h-8 w-4 text-gray-900 mr-2" />
+                                                                    <p>Assistant is typing...</p>
+                                                                </span>
+                                                                </div>
+                                                            )}
+
                             </ScrollArea>
                         </CardContent>
                         <div className="px-4 py-2">

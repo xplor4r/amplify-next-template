@@ -24,12 +24,12 @@ export const DataContextProvider = (props: Props) => {
 	const [filter, setFilter] = useState(views.thisMonth.key);
 	const [categories, setCategories] = useState<string[]>([]);
 
-	console.log('name >>>', name);
+	// console.log('name >>>', name);
 
 	const apiURL = getApiUrl(filter, name, categories, isNotRange);
-	console.log('apiURL >>>', apiURL);
+	// console.log('apiURL >>>', apiURL);
 	const { data = [], mutate, isLoading } = useSWR(apiURL);
-	console.log('data1', data);
+	// console.log('data1', data);
 
 	const onFilter = useCallback((categories: string[] = []) => {
 		setCategories(categories);

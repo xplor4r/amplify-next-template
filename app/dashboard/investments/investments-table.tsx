@@ -10,7 +10,7 @@ export default function InvestmentsTable () {
 
     const { data, isLoading } = useSWR('fetchInvestments', getInvestments)
 
-    console.log('income table data', data);
+    // console.log('income table data', data);
 
     if (data) {
         const investmentsSummaryData: InvestmentsSummaryProps[] = data;

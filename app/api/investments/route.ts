@@ -17,11 +17,11 @@ type Where = {
 
 export async function GET(request: NextRequest) {
     const { searchParams } = request.nextUrl;
-    console.log('search params', searchParams);
+    // console.log('search params', searchParams);
 
     const supabase = await createClient();
     const user = await supabase.auth.getUser();
-    console.log('user from session >>>>>', user);
+    // console.log('user from session >>>>>', user);
     const userId = user.data.user?.id;
 
     try {

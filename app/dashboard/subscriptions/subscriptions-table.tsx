@@ -10,7 +10,7 @@ export default function SubscriptionsTable () {
 
     const { data, isLoading } = useSWR('fetchSubscriptions', getSubscriptions)
 
-    console.log('subscriptions table data', data);
+    // console.log('subscriptions table data', data);
 
     // const subscriptionsSummaryData: SubscriptionsSummaryProps[] = [
       //   {

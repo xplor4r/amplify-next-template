@@ -10,15 +10,15 @@ import { getSubscriptions } from '@/services/subscriptions';
 export default function SubscriptionsSummary () {
 
 
-	const fetchSubscriptionsData = async () => {
-		await getSubscriptions().then((resp) => {
-			console.log('subscripitons resp >>>>', resp);
-		});
-	}
+	// const fetchSubscriptionsData = async () => {
+	// 	await getSubscriptions().then((resp) => {
+	// 		console.log('subscripitons resp >>>>', resp);
+	// 	});
+	// }
 
-	useEffect(() => {
-		fetchSubscriptionsData();
-	}, []);
+	// useEffect(() => {
+	// 	fetchSubscriptionsData();
+	// }, []);
 	
     return (
         <>

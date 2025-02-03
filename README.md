@@ -164,6 +164,16 @@ In your repo initialize the supabase project`
 ### Supabase Studio - http://127.0.0.1:54323/project/default
 
 
+# using Prisma 
+
+https://www.prisma.io/docs/getting-started/quickstart-sqlite
+
+Run migration 
+
+`npx prisma migrate dev --name update_uuid`
+
+This will reflect in the Local running Supabase Database (view it using the above supabase studio link)
+
 # Docker
 
 ```sh

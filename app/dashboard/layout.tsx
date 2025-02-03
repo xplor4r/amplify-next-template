@@ -1,20 +1,22 @@
-
+// 'use client';
 import DashboardLayout from '@/components/layout'
+
 import {
     SidebarInset,
     SidebarProvider,
     SidebarTrigger,
 } from '@/components/ui/sidebar';
-
 import Sidebar from '@/components/sidebar';
 import ChatbotWidget from '@/components/ChatbotWidget';
 
 export default async function Layout({ children}: any) {
     // get supbase user
 
+  
     return (
+    // <AuthProvider user={user}>
         <SidebarProvider>
-          
+       
             <DashboardLayout>
              
                 <Sidebar />
@@ -27,9 +29,10 @@ export default async function Layout({ children}: any) {
                 </div>
                
             </DashboardLayout>
+        
             <ChatbotWidget />  
         </SidebarProvider>
-           
+        // <AuthProvider >
     )
 }
 

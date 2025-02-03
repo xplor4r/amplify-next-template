@@ -20,3 +20,13 @@ export const addInvestment = async (data: InvestmentsData) => {
     }
     return await res.json();
 }
+
+export const getInvestments = async () => {
+    const res = await fetch(apiUrls.investments.getAll);
+
+    if (!res.ok) {
+        const error = await res.json();
+        throw error;
+    }
+    return await res.json();
+}

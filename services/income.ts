@@ -18,3 +18,13 @@ export const addIncome = async (data: IncomeData) => {
     }
     return await res.json();
 }
+
+export const getIncome = async () => {
+    const res = await fetch(apiUrls.income.getAll);
+
+    if (!res.ok) {
+        const error = await res.json();
+        throw error;
+    }
+    return await res.json();
+}

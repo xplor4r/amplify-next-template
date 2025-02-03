@@ -11,6 +11,8 @@ const shortcuts = {
 		investments: { shortcut: 'v', text: 'investment' },
 		overview: { shortcut: 'o', text: 'overview' },
 		subscriptions: { shortcut: 's', text: 'subscriptions' },
+		goals: { shortcut: 'g', text: 'goals'},
+		recommendations: { shortcut: 'r', text: 'recommendations'}
 	},
 };
 

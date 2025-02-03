@@ -8,7 +8,7 @@ import { ThemeSwitcher } from '../theme-switcher';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 import { useHotkeys } from 'react-hotkeys-hook';
-
+import { GoalIcon, FlaskConicalIcon } from 'lucide-react';
 import {
 	ExpensesIcon,
 	IncomeIcon,
@@ -43,6 +43,18 @@ const dashboardLinks = [
 		Icon: SubscriptionsIcon,
 		shortcutText: shortcuts.menu.subscriptions.shortcut,
 	},
+	{
+		name: 'Goals',
+		href: '/dashboard/goals',
+		Icon: GoalIcon,
+		shortcutText: shortcuts.menu.goals.shortcut,
+	},
+	{
+		name: 'AI recommendations',
+		href: '/dashboard/recommendations',
+		Icon: FlaskConicalIcon, 
+		shortcutText: shortcuts.menu.recommendations.shortcut
+	}
 ];
 
 const settingsLinks = [
@@ -71,6 +83,8 @@ export default function Sidebar() {
 			if (keys === shortcuts.menu.expenses.shortcut) router.push('/dashboard/expenses');
 			if (keys === shortcuts.menu.investments.shortcut) router.push('/dashboard/investments');
 			if (keys === shortcuts.menu.subscriptions.shortcut) router.push('/dashboard/subscriptions');
+			if (keys === shortcuts.menu.goals.shortcut) router.push('/dashboard/goals');
+			if (keys === shortcuts.menu.recommendations.shortcut) router.push('/dashboard/recommendations');
 		},
 		options
 	);

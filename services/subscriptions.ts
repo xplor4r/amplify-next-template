@@ -22,3 +22,13 @@ export const addSubscription = async (data: SubscriptionsData) => {
     }
     return await res.json();
 }
+
+export const getSubscriptions = async () => {
+    const res = await fetch(apiUrls.subscriptions.getAll);
+
+    if (!res.ok) {
+        const error = await res.json();
+        throw error;
+    }
+    return await res.json();
+}

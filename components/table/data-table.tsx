@@ -15,13 +15,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import TableLoader from './data-table-loader';
  
 interface DataTableProps<TData, TValue> {
+  loading: boolean;
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
  
 export function DataTable<TData, TValue>({
+  loading,
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -66,7 +69,9 @@ export function DataTable<TData, TValue>({
                 ))}
               </TableRow>
             ))
-          ) : (
+          ) : loading && table.getRowModel().rows?.length === 0 ? (
+            <TableLoader rows={5} columns={columns.length} />
+          ) :  (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
                 No results.

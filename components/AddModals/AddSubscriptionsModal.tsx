@@ -123,6 +123,7 @@ const initialState: SubscriptionsData = {
                     <Label htmlFor="url">URL</Label>
                     <Input id="url" name="url" type="url" value={formData.url} onChange={handleInputChange} required />
                   </div>
+
              
                 </div>
                 <div className="mt-6 flex justify-end space-x-4">

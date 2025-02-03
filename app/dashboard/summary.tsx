@@ -18,10 +18,16 @@ export default function Summary () {
 		(acc: any, { price, units }: any) => Number(price) * Number(units) + acc,
 		0
 	) : 0;
-	const totalSubscriptions = data.subscriptions.length > 0 ? data.subscriptions.reduce(
-		(acc: any, { price, paid_dates }: any) => Number(price) * paid_dates.length + acc,
-		0
-	): 0;
+	// const totalSubscriptions = data.subscriptions.length > 0 ? data.subscriptions.reduce(
+	// 	(acc: any, { price, paid_dates }: any) => Number(price) * paid_dates.length + acc,
+	// 	0
+	// ): 0;
+    const totalSubscriptions = 1000;
+
+    // const totalExpenses = 40000;
+    // const totalInvesments = 30000;
+    // const totalSubscriptions = 30000;
+    // const totalIncome = 50000;
 	const totalSpent = totalExpenses + totalInvesments + totalSubscriptions;
 	const totalBalance = totalIncome - totalSpent;
 

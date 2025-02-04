@@ -49,6 +49,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(data);
 
     } catch (error) {
+        console.log('error in invoice api', error);
         return NextResponse.json({ 
             error,
             message: 'Failed to get Income transactions of the user'

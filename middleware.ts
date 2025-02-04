@@ -6,9 +6,6 @@ import { updateSession } from './utils/supabase/middleware';
 
 // const isProduction = process.env.NODE_ENV === 'production';
 
-// const prodUrl = 'ddg8iicsr72an.amplifyapp.com';
-// const local = 'localhost:3000';
-// const domainUrl = isProduction ?  prodUrl : local;
 
 export async function middleware(req: NextRequest) {
     return await updateSession(req);

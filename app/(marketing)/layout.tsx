@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 import { ThemeProvider } from "next-themes";
 
-const defaultUrl = process.env.HOST_URL
-  ? `https://${process.env.HOST_URL}`
+const defaultUrl = process.env.NEXT_PUBLIC_PROJECT_URL
+  ? `${process.env.NEXT_PUBLIC_PROJECT_URL}`
   : "http://localhost:3000";
 
 const title =  "Wealthy AI"

@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import Image from 'next/image';
+import {useState, useEffect} from 'react';
 import { CheckCircle, LucideIcon } from 'lucide-react';
 import InsightsFeature from "@/app/assets/images/feature-insights.png";
 import InsightsFeatureDark from "@/app/assets/images/feature-insights-dark.png";
@@ -29,7 +30,30 @@ export const LandingSectionInfo = ({
     imageAlt="Feature",
     reverseOrder = false
 }: LandingSectionInfoProps) => {
+    const [currentImage, setCurrentImage] = useState(InsightsFeature.src)
     const {theme} = useTheme();
+
+    useEffect(() => {
+     
+        if (theme === 'system') {
+            const systemTheme = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+
+            if (systemTheme === 'light' ) {
+                setCurrentImage(InsightsFeature.src);
+            } else {
+                setCurrentImage(InsightsFeatureDark.src)
+            } 
+        }
+        if (theme === 'light') {
+            setCurrentImage(InsightsFeature.src);
+        } 
+        
+        if (theme === 'dark') {
+            setCurrentImage(InsightsFeatureDark.src)
+        }
+
+    }, [theme]);
+
 
     const featuresMap = [
         {
@@ -88,7 +112,7 @@ export const LandingSectionInfo = ({
                         }
                     </div>
                     <div className='flex justify-center py-2'>
-                        <Image src={theme === "light" ? `${InsightsFeature.src}` : `${InsightsFeatureDark.src}`} alt={imageAlt} width={600} height={400} className='rounded-xl object-cover' />
+                        <Image src={currentImage} alt={imageAlt} width={500} height={400} priority className='rounded-xl object-cover' />
                     </div>
                 </div>
             </div>

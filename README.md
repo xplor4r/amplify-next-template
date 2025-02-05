@@ -133,7 +133,7 @@ For open source projects, say how it is licensed.
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
 
-Ref:
+### Ref:
 
 https://stackoverflow.com/questions/78559286/installing-docker-compose-plugin-or-standalone-on-mac-apple-silicon-without
 
@@ -226,3 +226,9 @@ After the build is completed, tag your image so you can push the image to this r
 Run the following command to push this image to your newly created AWS repository:
 
 `docker push 816888338923.dkr.ecr.ap-southeast-2.amazonaws.com/wealthy-ai:latest`
+
+
+https://javascript.plainenglish.io/dockerize-next-js-app-for-local-development-and-production-76db292d6bff
+
+
+https://aws.plainenglish.io/automate-next-js-deployment-to-aws-ec2-with-gitlab-ci-ba0c1459e09f

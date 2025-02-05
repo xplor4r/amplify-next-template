@@ -22,16 +22,24 @@ export const LandingFaqs = ({
 
     const faqsData = [
         {
-            question: "How does this works",
+            question: "Is this free ?",
+            answer: 'Yes, you can use this free for personal use.'
+        },
+        {
+            question: "How does this works ?",
             answer: 'AI will analyse the data that you share and based on that generate insight reports'
         },
         {
-            question: "How does this works",
-            answer: 'AI will analyse the data that you share and based on that generate insight reports'
+            question: "Is there any cost for using the AI ?",
+            answer: 'No you can use this for free as for now.'
         },
         {
-            question: "How does this works",
-            answer: 'AI will analyse the data that you share and based on that generate insight reports'
+            question: "Is my data safe ?",
+            answer: 'Yes, we ensure highest level of data encryption and security.'
+        },
+        {
+            question: "Can i contribute / suggest features to this project ?",
+            answer: 'Yes, you can contact our team for any queries.'
         }
     ]
 

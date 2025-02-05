@@ -6,6 +6,7 @@ import { Button} from "@/components/ui/button";
 import { ShimmerButton } from "./ui/shimmer-button";
 import { SparkleIcon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useState, useEffect } from 'react';
 import HeroImage from "@/app/assets/images/hero-img.png";
 import HeroImageDark from "@/app/assets/images/hero-img-reverse.png";
 
@@ -30,17 +31,39 @@ export const LandingHero = ({
     imageSrc,
     showSecondaryButton = false,
 }: LandingHeroProps) => {
+    const [currentImage, setCurrentImage] = useState(HeroImage.src)
     const {theme} = useTheme();
 
+    useEffect(() => {
+     
+        if (theme === 'system') {
+            const systemTheme = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+
+            if (systemTheme === 'light' ) {
+                setCurrentImage(HeroImage.src);
+            } else {
+                setCurrentImage(HeroImageDark.src)
+            } 
+        }
+        if (theme === 'light') {
+            setCurrentImage(HeroImage.src);
+        } 
+        
+        if (theme === 'dark') {
+            setCurrentImage(HeroImageDark.src)
+        }
+
+    }, [theme]);
+
     return (
-    <div className="flex flex-col items-center text-center">
+     <div className="flex flex-col items-center text-center">
            <Badge variant="secondary" className="w-fit mb-2">
             <SparkleIcon size={40} className="px-2" /> 
              Grow your wealth with AI-powered Insights
         </Badge>
 
         
-        <Image src={theme === 'light' ? HeroImage.src : HeroImageDark.src} width={500} height={300} alt={description} className="mt-8" />
+        <Image src={currentImage} width={500} height={300} alt={description} className="mt-8" priority />
     
      
         <div className="space-y-8 space-x-4">

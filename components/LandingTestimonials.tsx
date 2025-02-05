@@ -33,28 +33,36 @@ export const LandingTestimonials = ({
     const testimonialsData = [
         {
             name: "Sujay K.",
-            role: "Senior Experience Engineer",
-            feedback: "I use Wealthy AI daily, helps me save lot of time",
-            rating: 5,
+            role: "Senior Experience Engineer, PS",
+            feedback: "I use Wealthy AI daily, helps me save lot of time and money",
+            rating: 3,
             imageSrc: Sujay.src,
             imageAlt: "Sujay"
         },
         {
             name: "Manisha C.",
-            role: "Senior Experience Engineer",
+            role: "Senior Experience Engineer, PS",
             feedback: "Now i know how to grow my money easily. Thanks to Wealthy",
-            rating: 5,
+            rating: 4,
             imageSrc: Manisha.src,
             imageAlt: "Manisha"
         },
         {
             name: "Saurabh K.",
-            role: "Senior Experience Engineer",
-            feedback: "I use Wealthy AI daily, helps me save lot of time",
+            role: "Senior Platform Engineer, PS",
+            feedback: "Now I don't have to worry about my savings anymore, It has made my accounting sorted.",
             rating: 5,
             imageSrc: Saurabh.src,
             imageAlt: "Saurabh"
         },
+        // {
+        //     name: "Himanshu",
+        //     role: "Senior Platform Engineer",
+        //     feedback: "Now I don't have to worry about my savings anymore, It has made my accounting sorted.",
+        //     rating: 5,
+        //     imageSrc: Saurabh.src,
+        //     imageAlt: "Saurabh"
+        // },
     ]
 
     return (

@@ -58,11 +58,11 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
         <link rel="icon" type="image/png" href="/favicons/favicon.ico" />
       </head>
-      <body className={`${inter.className} bg-background text-foreground text-gray-600 antialised`}>
+      <body className={`${inter.className} bg-background text-foreground text-gray-600 antialised w-full container-fluid`}>
         <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
+            enableSystem={true}
             disableTransitionOnChange
           >
           <div className="selection:bg-[hsl(320,65%, 52%, 20%)]">

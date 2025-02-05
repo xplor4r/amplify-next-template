@@ -11,8 +11,9 @@ export default async function ForgotPassword(props: {
 }) {
   const searchParams = await props.searchParams;
   return (
-    <div className="mx-auto w-[600px] py-40">
-      <form className="flex-1 flex-col w-full  text-foreground [&>input]:mb-6">
+    <div className="mx-auto w-full md:w-[600px] py-40">
+    <form className="flex flex-col mx-8 text-foreground [&>input]:mb-6">
+    
         <div>
           <h1 className="text-2xl font-medium">Reset Password</h1>
           <p className="text-sm text-secondary-foreground">

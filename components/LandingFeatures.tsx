@@ -46,13 +46,13 @@ export const LandingFeatures = ({
             icon: TrendingUp
         },
         {
-            title: "Analysis",
-            description: "test",
+            title: "AI Recommendations",
+            description: "Chat with AI directly, AI will analyse your data and give suggestions and feedbacks",
             icon: TrendingUp
         },
         {
-            title: "Grow",
-            description: "some desc",
+            title: "Analysis Reports & Dashboards",
+            description: "Powerful insights to your data",
             icon: TrendingUp
         },
     ]

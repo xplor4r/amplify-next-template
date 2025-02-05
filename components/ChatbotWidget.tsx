@@ -45,12 +45,12 @@ export default function ChatbotWidget() {
 
 
 
-    useEffect(() => {
-        const storedState = localStorage.getItem("chatSidebarOpen")
-        if (storedState !== null) {
-        setIsOpen(storedState === "true")
-        }
-    }, [])
+    // useEffect(() => {
+    //     const storedState = localStorage.getItem("chatSidebarOpen")
+    //     if (storedState !== null) {
+    //         setIsOpen(storedState === "true")
+    //     }
+    // }, [])
     
     
     const toggleSidebar = () => {
